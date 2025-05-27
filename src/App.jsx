@@ -1,5 +1,8 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.scss";
 import Categories from "./components/Categories/Categories.component";
+import Navigation from "./components/Navigation/Navigation.component";
+import Shop from "./routes/Shop/Shop.component";
 
 const categories = [
   {
@@ -30,7 +33,14 @@ const categories = [
 ];
 
 function App() {
-  return <Categories categories={categories} />;
+  return (
+    <Routes>
+      <Route path="/" element={<Navigation />}>
+        <Route index element={<Categories categories={categories} />} />
+        <Route path="shop" element={<Shop />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App;
