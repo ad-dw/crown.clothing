@@ -3,6 +3,7 @@ import "./App.scss";
 import Categories from "./components/Categories/Categories.component";
 import Navigation from "./components/Navigation/Navigation.component";
 import Shop from "./routes/Shop/Shop.component";
+import SignIn from "./routes/SignIn/SignIn.component";
 
 const categories = [
   {
@@ -38,6 +39,7 @@ function App() {
       <Route path="/" element={<Navigation />}>
         <Route index element={<Categories categories={categories} />} />
         <Route path="shop" element={<Shop />} />
+        <Route path="sign-in" element={<SignIn />} />
       </Route>
     </Routes>
   );
