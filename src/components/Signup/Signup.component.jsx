@@ -4,6 +4,8 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/Firebase/firebase.utils";
 import "./signup.styles.scss";
+import FormInput from "../FormInput/FormInput.component";
+import Button from "../Button/Button.coponent";
 
 const defaultFormValues = {
   dname: "",
@@ -47,41 +49,45 @@ const Signup = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="dname">Display Name</label>
-      <input
-        id="dname"
-        type="text"
-        name="dname"
-        value={dname}
-        onChange={handleChange}
-      />
-      <label htmlFor="email">Email</label>
-      <input
-        id="email"
-        type="email"
-        name="email"
-        value={email}
-        onChange={handleChange}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        name="password"
-        value={password}
-        onChange={handleChange}
-      />
-      <label htmlFor="cnfpassword">Confirm Password</label>
-      <input
-        id="cnfpassword"
-        type="password"
-        name="cnfpassword"
-        value={cnfpassword}
-        onChange={handleChange}
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <div className="sign-up-container">
+      <h2>Don't have an account?</h2>
+      <span>Signup with your email and password.</span>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          label="Display name"
+          id="dname"
+          type="text"
+          name="dname"
+          value={dname}
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Email"
+          id="email"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Password"
+          id="password"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Confirm Password"
+          id="cnfpassword"
+          type="password"
+          name="cnfpassword"
+          value={cnfpassword}
+          onChange={handleChange}
+        />
+        <Button type="submit">Sign up</Button>
+      </form>
+    </div>
   );
 };
 
