@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
@@ -7,6 +7,7 @@ import {
 import "./SignIn.styles.scss";
 import FormInput from "../FormInput/FormInput.component";
 import Button from "../Button/Button.coponent";
+import { UserContext } from "../../context/User.context";
 
 const defaultFormValues = {
   email: "",
@@ -16,10 +17,12 @@ const defaultFormValues = {
 const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormValues);
   const { email, password } = formFields;
+  const { setUser } = useContext(UserContext);
 
   const signInGoogleUser = async () => {
     let { user } = await signInWithGooglePopup();
     await createUserDocumentFromAuth(user);
+    setUser(user);
   };
 
   const handleChange = (event) => {
@@ -35,11 +38,11 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await SigninAuthUserWithEmailAndPassword(
+      const { user } = await SigninAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
+      setUser(user);
       resetFormFields();
     } catch (error) {
       console.error(error);
@@ -57,6 +60,7 @@ const SignIn = () => {
           type="email"
           name="email"
           value={email}
+          required
           onChange={handleChange}
         />
         <FormInput
@@ -65,6 +69,7 @@ const SignIn = () => {
           type="password"
           name="password"
           value={password}
+          required
           onChange={handleChange}
         />
         <div className="buttons-container">
