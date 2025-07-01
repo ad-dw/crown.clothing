@@ -4,6 +4,7 @@ import "./Navigation.styles.scss";
 import { useContext } from "react";
 import { UserContext } from "../../context/User.context";
 import { signOutUser } from "../../utils/Firebase/firebase.utils";
+import ShoppingIcon from "../ShoppingIcon/ShoppingIcon.component";
 
 const Navigation = () => {
   const { user, setUser } = useContext(UserContext);
@@ -31,6 +32,7 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
+          <ShoppingIcon />
         </div>
       </nav>
       <Outlet />
