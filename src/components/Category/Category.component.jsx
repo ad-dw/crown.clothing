@@ -2,7 +2,11 @@ import "./Category.styles.scss";
 
 const Category = ({ category }) => {
   return (
-    <div className="category-container">
+    <div
+      className="category-container"
+      tabIndex="0"
+      aria-label={`${category.title} category`}
+    >
       <div
         className="background-image"
         style={{ background: `url(${category.imageUrl})` }}

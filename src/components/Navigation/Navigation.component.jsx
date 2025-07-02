@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../../context/User.context";
 import { signOutUser } from "../../utils/Firebase/firebase.utils";
 import ShoppingIcon from "../ShoppingIcon/ShoppingIcon.component";
+import Cart from "../Cart/Cart.component";
 
 const Navigation = () => {
   const { user, setUser } = useContext(UserContext);
