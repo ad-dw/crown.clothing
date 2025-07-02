@@ -6,10 +6,11 @@
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  margin: 0 7.5px 15px;
+  margin: 7.5px 10px;
   overflow: hidden;
 
-  &:hover {
+  &:hover,
+  &:focus {
     cursor: pointer;
 
     & .background-image {
@@ -20,6 +21,10 @@
     & .category-body-container {
       opacity: 0.9;
     }
+  }
+  &:focus {
+    outline: 3px solid black !important;
+    outline-offset: 5px;
   }
 
   &.large {

@@ -4,12 +4,15 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.scss";
 import App from "./App.jsx";
 import { UserContextProvider } from "./context/User.context.jsx";
+import { CartContextProvider } from "./context/Cart.context.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <UserContextProvider>
-        <App />
+        <CartContextProvider>
+          <App />
+        </CartContextProvider>
       </UserContextProvider>
     </BrowserRouter>
   </StrictMode>
