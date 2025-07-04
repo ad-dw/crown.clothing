@@ -4,6 +4,7 @@ import Categories from "./components/Categories/Categories.component";
 import Navigation from "./components/Navigation/Navigation.component";
 import Shop from "./routes/Shop/Shop.component";
 import Authentication from "./routes/Authentication/Authentication.component";
+import CheckoutPage from "./routes/Checkout/CheckoutPage.component";
 
 const categories = [
   {
@@ -40,6 +41,7 @@ function App() {
         <Route index element={<Categories categories={categories} />} />
         <Route path="shop" element={<Shop />} />
         <Route path="auth" element={<Authentication />} />
+        <Route path="checkout" element={<CheckoutPage />} />
       </Route>
     </Routes>
   );
