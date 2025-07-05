@@ -12,7 +12,11 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card-container">
       <img src={product.imageUrl} alt={product.name} />
-      <Button buttonType="inverted" onClick={handleAddItemToCart}>
+      <Button
+        buttonType="inverted"
+        onClick={handleAddItemToCart}
+        aria-label={`Add ${product.name} to the cart`}
+      >
         Add to Cart
       </Button>
       <div className="footer">

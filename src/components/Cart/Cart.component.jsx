@@ -7,16 +7,30 @@ import { CartContext } from "../../context/Cart.context";
 
 const Cart = () => {
   const navigate = useNavigate();
+  const { setIsCartOpen } = useContext(CartContext);
   const handleNavigateToCheckout = () => {
     navigate("/checkout");
   };
+  const trapFocusHandler = (event) => {
+    console.log("event", event);
+    if (event.key === "Tab") event.preventDefault();
+  };
+  const keyDownHandler = (event) => {
+    if (event.key === "Escape") {
+      setIsCartOpen(false);
+      const target = document.querySelector(".cart-icon-container");
+      target && target.focus();
+    }
+  };
   const { cartItems } = useContext(CartContext);
   return (
-    <div className="cart-dropdown-container">
+    <div className="cart-dropdown-container" onKeyDown={keyDownHandler}>
       {cartItems.map((product) => (
         <CartItem product={product} key={product.id} />
       ))}
-      <Button onClick={handleNavigateToCheckout}>Checkout</Button>
+      <Button onClick={handleNavigateToCheckout} onKeyDown={trapFocusHandler}>
+        Checkout
+      </Button>
     </div>
   );
 };
