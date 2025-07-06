@@ -12,7 +12,6 @@ const Cart = () => {
     navigate("/checkout");
   };
   const trapFocusHandler = (event) => {
-    console.log("event", event);
     if (event.key === "Tab") event.preventDefault();
   };
   const keyDownHandler = (event) => {
