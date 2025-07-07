@@ -15,6 +15,7 @@ const ShoppingCartIcon = () => {
         className="cart-icon-container"
         onClick={handleCartToggle}
         title="Shopping cart"
+        type="button"
       >
         <img src={ShoppingIcon} alt="Shopping icon" className="shopping-icon" />
         <span className="item-count">{cartCount}</span>
