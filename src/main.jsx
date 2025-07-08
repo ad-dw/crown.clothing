@@ -5,17 +5,17 @@ import "./index.scss";
 import App from "./App.jsx";
 import { UserContextProvider } from "./context/User.context.jsx";
 import { CartContextProvider } from "./context/Cart.context.jsx";
-import { ProductContextProvider } from "./context/Products.context.jsx";
+import { CategoriesContextProvider } from "./context/Categories.context.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <UserContextProvider>
-        <ProductContextProvider>
+        <CategoriesContextProvider>
           <CartContextProvider>
             <App />
           </CartContextProvider>
-        </ProductContextProvider>
+        </CategoriesContextProvider>
       </UserContextProvider>
     </BrowserRouter>
   </StrictMode>
