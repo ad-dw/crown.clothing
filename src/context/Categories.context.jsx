@@ -9,10 +9,12 @@ import {
 
 export const CategoriesContext = createContext({
   categories: {},
+  isLoading: true,
 });
 
 export const CategoriesContextProvider = ({ children }) => {
   const [categories, setCategories] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   // useEffect(() => {
   //   addCollectionAndDocuments("categories", SHOP_DATA);
@@ -21,6 +23,7 @@ export const CategoriesContextProvider = ({ children }) => {
   useEffect(() => {
     const getCategoriesData = async () => {
       const categoriesMap = await getCategoriesAndDocuments();
+      setIsLoading(false);
       setCategories(categoriesMap);
     };
     getCategoriesData();
@@ -29,6 +32,7 @@ export const CategoriesContextProvider = ({ children }) => {
   const value = {
     categories,
     setCategories,
+    isLoading,
   };
 
   return (
