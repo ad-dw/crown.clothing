@@ -1,19 +1,19 @@
 import "./CategoriesPreview.styles.scss";
-import ProductCard from "../ProductCard/ProductCard.component.jsx";
+import { useContext } from "react";
+import { CategoriesContext } from "../../context/Categories.context";
+import CategoryPreview from "../CategoryPreview/CategoryPreview.component";
 
-const CategoryPreview = ({ title, products }) => {
-  return (
-    <div className="category-preview-container">
-      <h2>
-        <span className="title">{title.toUpperCase()}</span>
-      </h2>
-      <div className="preview">
-        {products.slice(0, 4).map((product) => (
-          <ProductCard product={product} key={product.id} />
-        ))}
-      </div>
-    </div>
-  );
+const CategoriesPreview = () => {
+  const { categories } = useContext(CategoriesContext);
+  return Object.keys(categories).map((category, _idx) => {
+    return (
+      <CategoryPreview
+        key={category + _idx}
+        title={category}
+        products={categories[category]}
+      />
+    );
+  });
 };
 
-export default CategoryPreview;
+export default CategoriesPreview;
