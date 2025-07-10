@@ -10,7 +10,7 @@ const CategoriesPreview = () => {
       <CategoryPreview
         key={category + _idx}
         title={category}
-        products={categories[category]}
+        products={categories[category].slice(0, 4)}
       />
     );
   });

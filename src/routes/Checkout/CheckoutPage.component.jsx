@@ -6,7 +6,6 @@ import EmptyCart from "../../components/EmptyCart/EmptyCart.component";
 
 const CheckoutPage = () => {
   const { cartItems, totalAmount } = useContext(CartContext);
-  console.log(cartItems);
   return cartItems.length ? (
     <div className="checkout-container">
       {cartItems.map((item) => {
