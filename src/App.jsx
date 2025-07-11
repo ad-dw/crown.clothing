@@ -5,6 +5,10 @@ import Navigation from "./components/Navigation/Navigation.component";
 import Shop from "./routes/Shop/Shop.component";
 import Authentication from "./routes/Authentication/Authentication.component";
 import CheckoutPage from "./routes/Checkout/CheckoutPage.component";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { onUserAuthStatChanged } from "./utils/Firebase/firebase.utils";
+import { setUser } from "./reduxStore/User/UserAction";
 
 const categories = [
   {
@@ -35,6 +39,13 @@ const categories = [
 ];
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const unsubscribe = onUserAuthStatChanged((user) =>
+      dispatch(setUser(user))
+    );
+    return unsubscribe;
+  }, []);
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>
