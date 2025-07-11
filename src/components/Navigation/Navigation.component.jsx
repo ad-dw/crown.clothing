@@ -1,14 +1,13 @@
 import { Link, Outlet } from "react-router-dom";
 import logo from "../../assets/crown.svg";
 import "./Navigation.styles.scss";
-import { useContext } from "react";
-import { UserContext } from "../../context/User.context";
 import { signOutUser } from "../../utils/Firebase/firebase.utils";
 import ShoppingIcon from "../ShoppingIcon/ShoppingIcon.component";
-import Cart from "../Cart/Cart.component";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../reduxStore/User/UserSelector";
 
 const Navigation = () => {
-  const { user, setUser } = useContext(UserContext);
+  const user = useSelector(userSelector);
   const handleSignout = async () => {
     await signOutUser();
   };
