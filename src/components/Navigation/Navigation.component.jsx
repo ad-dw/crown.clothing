@@ -24,7 +24,14 @@ const Navigation = () => {
             SHOP
           </Link>
           {user ? (
-            <span className="nav-link" title="Sign out" onClick={handleSignout}>
+            <span
+              className="nav-link"
+              title="Sign out"
+              onClick={handleSignout}
+              tabIndex="0"
+              aria-label="Sign out"
+              role="link"
+            >
               SIGN OUT
             </span>
           ) : (
