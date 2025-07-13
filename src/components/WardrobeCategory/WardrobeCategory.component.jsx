@@ -1,19 +1,14 @@
 import "./WardrobeCategory.styles.scss";
-import { useContext } from "react";
-import { CategoriesContext } from "../../context/Categories.context";
 import { useParams } from "react-router-dom";
 import CategoryView from "../CategoryView/CategoryView.component";
-import Spinner from "../Spinner/Spinner.component";
+import { useSelector } from "react-redux";
+import { categoriesSelector } from "../../reduxStore/Categories/CategoriesSelector";
 
 const WardrobeCategory = () => {
-  const { categories, isLoading } = useContext(CategoriesContext);
+  const categories = useSelector(categoriesSelector);
   let { category } = useParams();
   let categoryData = categories[category];
-  return isLoading ? (
-    <Spinner />
-  ) : (
-    <CategoryView title={category} products={categoryData} />
-  );
+  return <CategoryView title={category} products={categoryData} />;
 };
 
 export default WardrobeCategory;
