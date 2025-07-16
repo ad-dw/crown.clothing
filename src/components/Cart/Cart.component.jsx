@@ -1,16 +1,17 @@
-import { useContext } from "react";
 import Button from "../Button/Button.coponent";
 import CartItem from "../CartItem/CartItem.component";
 import "./Cart.styles.scss";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "../../context/Cart.context";
 import EmptyCart from "../EmptyCart/EmptyCart.component";
+import { setIsCartOpen } from "../../reduxStore/Cart/CartAction";
+import { useDispatch, useSelector } from "react-redux";
+import { cartItemsSelector } from "../../reduxStore/Cart/CartSelector";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const { setIsCartOpen } = useContext(CartContext);
+  const dispatch = useDispatch();
   const handleNavigateToCheckout = () => {
-    setIsCartOpen(false);
+    dispatch(setIsCartOpen(false));
     navigate("/checkout");
   };
   const trapFocusHandler = (event) => {
@@ -18,12 +19,12 @@ const Cart = () => {
   };
   const keyDownHandler = (event) => {
     if (event.key === "Escape") {
-      setIsCartOpen(false);
+      dispatch(setIsCartOpen(false));
       const target = document.querySelector(".cart-icon-container");
       target && target.focus();
     }
   };
-  const { cartItems } = useContext(CartContext);
+  const cartItems = useSelector(cartItemsSelector);
   return (
     <div className="cart-dropdown-container" onKeyDown={keyDownHandler}>
       {cartItems.length ? (
