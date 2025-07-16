@@ -1,0 +1,4 @@
+export const cartActions = {
+  SET_CART_OPEN: "SET_CART_OPEN",
+  UPDATE_CART_PRODUCTS: "UPDATE_CART_PRODUCTS",
+};
