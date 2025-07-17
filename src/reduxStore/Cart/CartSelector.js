@@ -1,21 +1,30 @@
-export const isCartOpenSelector = (state) => {
-  return state.cart.isCartOpen;
-};
+import { createSelector } from "reselect";
 
-export const cartItemsSelector = (state) => {
-  return state.cart.cartItems;
-};
+const selectCartReducer = (state) => state.cart;
 
-export const cartCountSelector = (state) => {
-  return state.cart.cartItems.reduce(
-    (count, item) => (count += item.quantity),
-    0
-  );
-};
+export const isCartOpenSelector = createSelector(
+  [selectCartReducer],
+  (cart) => cart.isCartOpen
+);
 
-export const cartTotalSelector = (state) => {
-  return state.cart.cartItems.reduce(
-    (amount, item) => (amount += item.quantity * item.price),
-    0
-  );
-};
+export const cartItemsSelector = createSelector(
+  [selectCartReducer],
+  (cart) => cart.cartItems
+);
+
+export const cartCountSelector = createSelector(
+  [cartItemsSelector],
+  (cartItems) => {
+    return cartItems.reduce((count, item) => (count += item.quantity), 0);
+  }
+);
+
+export const cartTotalSelector = createSelector(
+  [cartItemsSelector],
+  (cartItems) => {
+    return cartItems.reduce(
+      (amount, item) => (amount += item.quantity * item.price),
+      0
+    );
+  }
+);
