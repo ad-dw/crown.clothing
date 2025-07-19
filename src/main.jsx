@@ -5,15 +5,18 @@ import "./index.scss";
 import App from "./App.jsx";
 import { CartContextProvider } from "./context/Cart.context.jsx";
 import { Provider } from "react-redux";
-import { reduxStore } from "./reduxStore/reduxStore.js";
+import { PersistGate } from "redux-persist/integration/react";
+import { reduxStore, persistor } from "./reduxStore/reduxStore.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <Provider store={reduxStore}>
-        <CartContextProvider>
-          <App />
-        </CartContextProvider>
+        <PersistGate persistor={persistor}>
+          <CartContextProvider>
+            <App />
+          </CartContextProvider>
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </StrictMode>
