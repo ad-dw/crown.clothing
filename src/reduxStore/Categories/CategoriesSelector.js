@@ -17,3 +17,8 @@ export const categoriesSelector = createSelector(
     }, {});
   }
 );
+
+export const categoriesLoading = createSelector(
+  [selectCategoryReducer],
+  (categories) => categories.isLoading
+);
