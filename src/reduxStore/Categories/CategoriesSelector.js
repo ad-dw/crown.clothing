@@ -9,7 +9,7 @@ const categoriesRawDataSelector = createSelector(
 
 export const categoriesSelector = createSelector(
   [categoriesRawDataSelector],
-  (categoriesRawData) => {
+  (categoriesRawData = []) => {
     return categoriesRawData.reduce((acc, catgory) => {
       const { title, items } = catgory;
       acc[title.toLowerCase()] = items;
