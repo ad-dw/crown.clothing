@@ -5,6 +5,11 @@
 
   h2 {
     text-align: start;
+    a {
+      &:focus {
+        outline-offset: 5px;
+      }
+    }
   }
 
   .title {
