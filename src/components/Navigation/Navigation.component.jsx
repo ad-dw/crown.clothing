@@ -14,7 +14,7 @@ const Navigation = () => {
   return (
     <>
       <nav className="navigation">
-        <Link to="/" title="Homepage logo">
+        <Link to="/" title="Homepage">
           <div className="logo-container">
             <img src={logo} alt="Homepage" className="logo" />
           </div>
@@ -35,7 +35,7 @@ const Navigation = () => {
               SIGN OUT
             </span>
           ) : (
-            <Link className="nav-link" to="/auth" title="Auth">
+            <Link className="nav-link" to="/auth" title="Sign in">
               SIGN IN
             </Link>
           )}
