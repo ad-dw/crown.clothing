@@ -1,18 +1,16 @@
-import { getCategoriesAndDocuments } from "../../utils/Firebase/firebase.utils";
-import { CategoriesActions } from "./CategoriesActionTypes";
+// import { getCategoriesAndDocuments } from "../../utils/Firebase/firebase.utils";
+// import {
+//   setCategoriesStart,
+//   setCategoriesSuccess,
+//   setCategoriesFailed,
+// } from "./CategoriesReducer";
 
-export const fetchCategoriesThunkAsync = () => async (dispatch) => {
-  dispatch({ type: CategoriesActions.SET_CATEGORIES_START });
-  try {
-    const categoriesMap = await getCategoriesAndDocuments();
-    dispatch({
-      type: CategoriesActions.SET_CATEGORIES_SUCCESS,
-      payload: categoriesMap,
-    });
-  } catch (err) {
-    dispatch({
-      type: CategoriesActions.SET_CATEGORIES_FAILED,
-      payload: err.message,
-    });
-  }
-};
+// export const fetchCategoriesThunkAsync = () => async (dispatch) => {
+//   dispatch(setCategoriesStart());
+//   try {
+//     const categoriesMap = await getCategoriesAndDocuments();
+//     dispatch(setCategoriesSuccess(categoriesMap));
+//   } catch (err) {
+//     dispatch(setCategoriesFailed(err.message));
+//   }
+// };

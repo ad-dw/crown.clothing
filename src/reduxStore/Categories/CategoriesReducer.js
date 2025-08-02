@@ -1,4 +1,5 @@
-import { CategoriesActions } from "./CategoriesActionTypes";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getCategoriesAndDocuments } from "../../utils/Firebase/firebase.utils";
 
 const INITIAL_CATEGORIES_STATE = {
   categoriesRawData: [],
@@ -6,30 +7,31 @@ const INITIAL_CATEGORIES_STATE = {
   error: null,
 };
 
-export const CategoriesReducer = (
-  state = INITIAL_CATEGORIES_STATE,
-  action = {}
-) => {
-  const { type, payload } = action;
-  switch (type) {
-    case CategoriesActions.SET_CATEGORIES_START:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case CategoriesActions.SET_CATEGORIES_SUCCESS:
-      return {
-        ...state,
-        categoriesRawData: payload,
-        isLoading: false,
-      };
-    case CategoriesActions.SET_CATEGORIES_FAILED:
-      return {
-        ...state,
-        isLoading: false,
-        error: payload,
-      };
-    default:
-      return state;
+export const fetchCategoriesThunkAsync = createAsyncThunk(
+  "categories/fetchCategories",
+  async () => {
+    const categoriesMap = await getCategoriesAndDocuments();
+    return categoriesMap;
   }
-};
+);
+
+const categoriesSlice = createSlice({
+  name: "categories",
+  initialState: INITIAL_CATEGORIES_STATE,
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCategoriesThunkAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchCategoriesThunkAsync.fulfilled, (state, action) => {
+        state.categoriesRawData = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchCategoriesThunkAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      });
+  },
+});
+
+export const CategoriesReducer = categoriesSlice.reducer;

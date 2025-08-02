@@ -1,27 +1,21 @@
-import {
-  applyMiddleware,
-  compose,
-  legacy_createStore as createStore,
-} from "redux";
+// import {
+//   applyMiddleware,
+//   compose,
+//   legacy_createStore as createStore,
+// } from "redux";
 
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+// import { persistStore, persistReducer } from "redux-persist";
+// import storage from "redux-persist/lib/storage";
 import { rootReducer } from "./rootReducer";
 import { logger } from "redux-logger";
-import { thunk } from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
 
-const middlewares = [logger, thunk];
-const persistConfig = {
-  key: "root",
-  storage,
-  whitelist: ["cart"],
-};
-const composedEnhancers = compose(applyMiddleware(...middlewares));
-const enhancedReducer = persistReducer(persistConfig, rootReducer);
-export const reduxStore = createStore(
-  enhancedReducer,
-  undefined,
-  composedEnhancers
-);
+const middlewares = [logger];
 
-export const persistor = persistStore(reduxStore);
+export const reduxStore = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(middlewares),
+});
