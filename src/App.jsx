@@ -8,7 +8,7 @@ import CheckoutPage from "./routes/Checkout/CheckoutPage.component";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { onUserAuthStatChanged } from "./utils/Firebase/firebase.utils";
-import { setUser } from "./reduxStore/User/UserAction";
+import { setCurrentUser } from "./reduxStore/User/UserReducer";
 
 const categories = [
   {
@@ -42,7 +42,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = onUserAuthStatChanged((user) =>
-      dispatch(setUser(user))
+      dispatch(setCurrentUser(user))
     );
     return unsubscribe;
   }, []);

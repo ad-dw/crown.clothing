@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import WardrobeCategory from "../../components/WardrobeCategory/WardrobeCategory.component";
 import { getCategoriesAndDocuments } from "../../utils/Firebase/firebase.utils";
 import { useDispatch } from "react-redux";
-import { fetchCategoriesThunkAsync } from "../../reduxStore/Categories/CategoriesAction";
+import { fetchCategoriesThunkAsync } from "../../reduxStore/Categories/CategoriesReducer";
 import { useEffect } from "react";
 
 const Shop = () => {

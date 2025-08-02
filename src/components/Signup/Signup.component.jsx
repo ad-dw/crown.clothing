@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -6,7 +6,7 @@ import {
 import "./signup.styles.scss";
 import FormInput from "../FormInput/FormInput.component";
 import Button from "../Button/Button.coponent";
-import { UserContext } from "../../context/User.context";
+import { setCurrentUser } from "../../reduxStore/User/UserReducer";
 
 const defaultFormValues = {
   dname: "",
@@ -18,7 +18,6 @@ const defaultFormValues = {
 const Signup = () => {
   const [formFields, setFormFields] = useState(defaultFormValues);
   const { dname, email, password, cnfpassword } = formFields;
-  const { setUser } = useContext(UserContext);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -42,7 +41,7 @@ const Signup = () => {
         password
       );
       await createUserDocumentFromAuth(user, { displayName: dname });
-      setUser(user);
+      dispatch(setCurrentUser(user));
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use")
