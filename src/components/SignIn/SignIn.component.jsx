@@ -8,7 +8,7 @@ import "./SignIn.styles.scss";
 import FormInput from "../FormInput/FormInput.component";
 import Button from "../Button/Button.coponent";
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "../../reduxStore/User/UserReducer";
+import { setCurrentUser } from "../../reduxStore/User/UserSlice";
 
 const defaultFormValues = {
   email: "",
