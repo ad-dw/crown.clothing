@@ -1,6 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { UserReducer } from "./User/UserReducer";
-import { CategoriesReducer } from "./Categories/CategoriesReducer";
+import { UserReducer } from "./User/UserSlice";
+import { CategoriesReducer } from "./Categories/CategoriesSlice";
 import { CartReducer } from "./Cart/CartReducer";
 
 export const rootReducer = combineReducers({

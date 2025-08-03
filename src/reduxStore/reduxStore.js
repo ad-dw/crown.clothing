@@ -17,5 +17,5 @@ export const reduxStore = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(middlewares),
+    }).concat(process.env.NODE_ENV !== "production" ? middlewares : []),
 });

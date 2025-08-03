@@ -8,7 +8,7 @@ import CheckoutPage from "./routes/Checkout/CheckoutPage.component";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { onUserAuthStatChanged } from "./utils/Firebase/firebase.utils";
-import { setCurrentUser } from "./reduxStore/User/UserReducer";
+import { setCurrentUser } from "./reduxStore/User/UserSlice";
 
 const categories = [
   {
